@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.lyflexi.mysqlock.mapper.StockMapper">
+
+    <update id="updateStockOneSql">
+        update stock set count = count - 1  where product_id = #{stock.productId}
+    </update>
+
+    <select id="selectStockForUpdate" resultType="org.lyflexi.entity.Stock">
+        select * from stock where product_id = #{productId} for update
+    </select>
+
+    <update id="updateStock">
+        update stock set count = #{stock.count} where product_id = #{stock.productId}
+    </update>
+
+    <update id="updateStockOptimistic">
+        update stock
+        set count = #{stock.count} ,version = version +1
+        where product_id = #{stock.productId} and version = #{stock.version}
+    </update>
+</mapper>

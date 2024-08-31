@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: jvmlock
+    port: 8080
+  datasource:
+    url: jdbc:mysql://192.168.18.100:3306/disrtibute_lock?characterEncoding=utf-8&useSSL=false
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 10
+mybatis-plus:
+  mapper-locations: classpath*:mapper/*Mapper.xml
+  global-config:
+    db-config:
+      id-type: auto # 自动递增ID策略
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 控制台输出SQL日志
