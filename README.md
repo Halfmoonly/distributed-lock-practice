@@ -8,7 +8,7 @@ MySQL自身有三种分布式锁方案：
 update stock set count = count - 1 where product_id = 1 and count > 0;
 ```
 
-2. for update + 普通的update语句
+2. for update显式加排他锁 + 普通的update语句
 ```sql
 <select id="selectStockForUpdate" resultType="org.lyflexi.entity.Stock">
     select * from stock where product_id = #{productId} for update
