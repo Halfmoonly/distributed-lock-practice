@@ -2,7 +2,7 @@
 
 # mysql锁
 MySQL自身有三种分布式锁方案：
-1. InnoDB存储引擎在update的时候会自动添加排他锁。利用这一特性，我们可以解决超卖问题，具体SQL如下：
+1. InnoDB存储引擎在执行如conut=count-1的update脚本的时候会自动添加排他锁。利用这一特性，我们可以解决超卖问题，具体SQL如下：
 
 ```sql
 update stock set count = count - 1 where product_id = 1 and count > 0;
