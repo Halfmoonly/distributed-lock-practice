@@ -9,6 +9,8 @@ update stock set count = count - 1 where product_id = 1 and count > 0;
 ```
 
 2. for update显式加排他锁 + 普通的update语句
+
+先在查询的时候加上排他锁，后更新
 ```sql
 <select id="selectStockForUpdate" resultType="org.lyflexi.entity.Stock">
     select * from stock where product_id = #{productId} for update
@@ -19,7 +21,7 @@ update stock set count = count - 1 where product_id = 1 and count > 0;
 </update>
 ```
 
-3. 版本号字段
+3. 乐观锁版本号字段
 ```sql
 <update id="updateStockOptimistic">
     update stock
